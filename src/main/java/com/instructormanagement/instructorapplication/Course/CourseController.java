@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +23,11 @@ public class CourseController {
     @GetMapping(value = "/getcourses")
     public List<Course> getCourses() {
         return courseService.getCourses();
+    }
+
+    @PostMapping(value = "/savecourse/{course}")
+    public String saveCourse(@RequestBody Course course) {
+        courseService.saveCourse(course);
+        return "The value is saved";
     }
 }
